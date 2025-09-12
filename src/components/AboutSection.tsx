@@ -1,14 +1,36 @@
-import { motion } from 'motion/react'
-import { useInView } from 'motion/react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { PurpleGlare } from './PurpleGlare'
 
-export function AboutSection() {
+interface AboutSectionProps {
+  onSectionClick?: (sectionId: string) => void
+}
+
+export function AboutSection({ onSectionClick }: AboutSectionProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  
+  // Suppress unused variable warning
+  console.log(onSectionClick)
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  })
+  
+  const textOpacity = useTransform(scrollYProgress, [0, 0.1, 0.12, 0.15, 0.2, 0.21, 0.23, 1], [0.1, 0.1, 0.2, 0.3, 0.5, 0.8, 1,1])
 
   return (
-    <section id="about" className="py-32 px-6" ref={ref}>
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="py-32 px-6 relative" ref={ref}>
+      <PurpleGlare position="top-right" intensity={0.4} />
+      <PurpleGlare position="bottom-left" intensity={0.3} />
+      <motion.div 
+        className="max-w-6xl mx-auto"
+        style={{ 
+          opacity: textOpacity
+        }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -21,18 +43,15 @@ export function AboutSection() {
             </h2>
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p>
-                We are a collective of visionaries, dreamers, and creators who believe fashion 
-                is more than fabric and thread—it's a powerful medium for storytelling, 
-                social change, and artistic expression.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo elit libero, non scelerisque nibh porttitor at. In eget erat lectus. Aliquam erat volutpat. Etiam eleifend ante finibus, porttitor justo et, laoreet enim. 
               </p>
               <p>
-                Our society bridges the gap between emerging designers and established industry 
-                professionals, fostering an environment where creativity flourishes and 
-                meaningful connections are forged.
+              Suspendisse potenti. Nam eu velit quis tellus accumsan posuere at eu orci. 
+
               </p>
               <p>
-                Each year, we curate an extraordinary showcase that challenges conventions, 
-                celebrates diversity, and raises vital funds for causes close to our hearts.
+              Ut eu nulla id odio tincidunt rutrum dignissim vel lacus. Aenean feugiat fringilla turpis ac vestibulum. Integer varius dictum imperdiet. Cras mattis metus in efficitur tristique. Praesent eget tristique ante. Etiam finibus et eros in aliquam. Vivamus nec interdum risus.
+
               </p>
             </div>
           </div>
@@ -61,13 +80,13 @@ export function AboutSection() {
                   uncompromisingly authentic.
                 </p>
                 <div className="pt-4">
-                  <p className="text-sm tracking-wider">— Alexandra Chen, President</p>
+                  <p className="text-sm tracking-wider">— Paige Griffiths, President</p>
                 </div>
               </div>
             </div>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }

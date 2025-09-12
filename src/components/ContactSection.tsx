@@ -1,59 +1,80 @@
-import { motion } from 'motion/react'
-import { useInView } from 'motion/react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { PurpleGlare } from './PurpleGlare'
 import { Instagram, Linkedin, Facebook, Mail } from 'lucide-react'
 
-export function ContactSection() {
+interface ContactSectionProps {
+  onSectionClick?: (sectionId: string) => void
+}
+
+export function ContactSection({ onSectionClick }: ContactSectionProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  
+  // Suppress unused variable warning
+  console.log(onSectionClick)
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  })
+  
+  const textOpacity = useTransform(scrollYProgress, [0, 0.1, 0.12, 0.15, 0.2, 0.21, 0.23, 1], [0.1, 0.1, 0.2, 0.3, 0.5, 0.8, 1,1])
 
   const socialLinks = [
     { 
       icon: Instagram, 
       label: "Instagram", 
-      handle: "@fashionsociety",
-      url: "https://instagram.com/fashionsociety" 
+      handle: "@CUCFS",
+      url: "https://instagram.com/CUCFS" 
     },
     { 
       icon: Linkedin, 
       label: "LinkedIn", 
-      handle: "Fashion Society",
-      url: "https://linkedin.com/company/fashion-society" 
+      handle: "CUCFS",
+      url: "https://www.linkedin.com/company/cucfs/?originalSubdomain=uk" 
     },
     { 
       icon: Facebook, 
       label: "Facebook", 
-      handle: "Fashion Society Official",
-      url: "https://facebook.com/fashionsociety" 
+      handle: "CUCFS Official",
+      url: "https://facebook.com/CUCFS" 
     },
     { 
       icon: Mail, 
       label: "Email", 
-      handle: "hello@fashionsociety.com",
-      url: "mailto:hello@fashionsociety.com" 
+      handle: "cucfs@cambridgesu.co.uk",
+      url: "mailto:cucfs@cambridgesu.co.uk" 
     }
   ]
 
   return (
-    <section id="contact" className="py-32 px-6" ref={ref}>
-      <div className="max-w-4xl mx-auto">
+    <section id="contact" className="py-16 px-6 relative" ref={ref}>
+      <PurpleGlare position="top-middle-right" intensity={0.4} />
+      <PurpleGlare position="bottom-left" intensity={0.3} />
+      <motion.div 
+        className="max-w-4xl mx-auto"
+        style={{ 
+          opacity: textOpacity
+        }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
-          <h2 className="text-5xl md:text-6xl tracking-[-0.02em] font-light mb-8">
+          <h2 className="text-4xl md:text-5xl tracking-[-0.02em] font-light mb-4">
             Connect
           </h2>
-          <div className="w-24 h-px bg-foreground mx-auto mb-8" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Join our community of creatives, collaborators, and changemakers. 
-            Let's create something beautiful together.
-          </p>
+          <div className="w-16 h-px bg-foreground mx-auto mb-4" />
+          {/* <p className="text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            Join our community of creatives, collaborators, and changemakers.
+          </p> */}
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="flex flex-wrap justify-center gap-4">
           {socialLinks.map((link, index) => (
             <motion.a
               key={index}
@@ -63,16 +84,16 @@ export function ContactSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group flex items-center p-8 border border-border/20 hover:border-border/40 transition-all duration-300 hover:-translate-y-2"
+              className="group flex items-center p-3 border border-border/20 hover:border-border/40 transition-all duration-300 min-w-0 flex-shrink-0"
             >
-              <div className="flex items-center justify-center w-16 h-16 bg-muted/30 group-hover:bg-muted/50 transition-colors duration-300 mr-6">
-                <link.icon className="w-6 h-6 text-muted-foreground group-hover:text-foreground transition-colors duration-300" />
+              <div className="flex items-center justify-center w-10 h-10 bg-muted/30 group-hover:bg-muted/50 transition-colors duration-300 mr-3">
+                <link.icon className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300" />
               </div>
-              <div>
-                <h3 className="text-xl font-light tracking-wide mb-2 group-hover:text-foreground transition-colors duration-300">
+              <div className="min-w-0">
+                <h3 className="text-base font-light tracking-wide mb-0.5 group-hover:text-foreground transition-colors duration-300">
                   {link.label}
                 </h3>
-                <p className="text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
+                <p className="text-xs text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300 truncate">
                   {link.handle}
                 </p>
               </div>
@@ -92,14 +113,14 @@ export function ContactSection() {
           </p>
           <div className="space-y-2">
             <p className="text-sm tracking-widest text-muted-foreground">
-              FASHION SOCIETY
+              CUCFS
             </p>
             <p className="text-xs tracking-wider text-muted-foreground">
-              Where creativity meets purpose
+              Showcasing creative talent, in aid of charity.
             </p>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }

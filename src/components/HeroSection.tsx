@@ -1,8 +1,14 @@
-import { motion, useScroll, useTransform } from 'motion/react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import exampleImage from 'figma:asset/e0ce485ccc79b1571c55989987714528eab2df14.png'
 
-export function HeroSection() {
+// CUCFS model image
+const modelImage = '/hero_model.png'
+
+interface HeroSectionProps {
+  onSectionClick?: (sectionId: string) => void
+}
+
+export function HeroSection({ onSectionClick }: HeroSectionProps) {
   const containerRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -12,6 +18,9 @@ export function HeroSection() {
   const modelY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
   const modelScale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+
+  // Suppress unused parameter warning
+  console.log('Hero section click handler:', onSectionClick)
 
   return (
     <section 
@@ -28,9 +37,9 @@ export function HeroSection() {
         }}
       >
         <img
-          src={exampleImage}
-          alt="Fashion model"
-          className="w-full h-full object-cover object-left opacity-90"
+          src={modelImage}
+          alt="CUCFS Fashion model"
+          className="w-full h-full object-cover object-left opacity-60"
         />
         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/80" />
       </motion.div>
@@ -47,13 +56,14 @@ export function HeroSection() {
             className="mb-8"
           >
             <h1 className="text-7xl md:text-8xl lg:text-9xl tracking-[-0.03em] font-light mb-4 leading-none">
-              FASHION
+              CUCFS
             </h1>
             <h1 className="text-7xl md:text-8xl lg:text-9xl tracking-[-0.03em] font-light mb-8 leading-none">
-              SOCIETY
+              2026
             </h1>
             <div className="w-24 h-px bg-foreground mb-8" />
           </motion.div>
+
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -62,8 +72,7 @@ export function HeroSection() {
             className="max-w-lg"
           >
             <p className="text-lg tracking-wide text-muted-foreground leading-relaxed">
-              Where creativity meets purpose. An avant-garde collective showcasing emerging talent 
-              while championing meaningful causes through the art of fashion.
+             #BeyondTheCover
             </p>
           </motion.div>
 

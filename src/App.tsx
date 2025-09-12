@@ -1,7 +1,16 @@
-import { Router } from './oldcomponents/Router'
+import { Router } from './components/Router'
+import { ThemeProvider } from './contexts/ThemeContext'
+import { MetallicCursor } from './components/MetallicCursor'
 
 export default function App() {
-  return <Router />
+  return (
+    <ThemeProvider>
+      <div className="metallic-cursor overflow-x-hidden">
+        <Router />
+        <MetallicCursor />
+      </div>
+    </ThemeProvider>
+  )
 }
 
 // import { useState } from 'react'

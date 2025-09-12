@@ -1,5 +1,5 @@
-import { motion } from 'motion/react'
-import { useInView } from 'motion/react'
+import { motion } from 'framer-motion'
+import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { ImageWithFallback } from './figma/ImageWithFallback'
 import { Button } from './ui/button'
@@ -56,7 +56,8 @@ export function CommitteePage() {
             </h1>
             <div className="w-24 h-px bg-foreground mx-auto mb-8" />
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Meet the passionate individuals who bring our vision to life—a diverse team 
+              Meet the passionate individuals who bring our vision to life. 
+              A diverse team 
               of creatives, strategists, and innovators united by a shared love for fashion and social impact.
             </p>
           </motion.div>
@@ -152,73 +153,7 @@ export function CommitteePage() {
         </div>
       </section>
 
-      {/* Group Photo Placeholder */}
-      <section className="py-20 px-6 bg-muted/10">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-light tracking-[-0.01em] mb-6">
-              Our Team
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Behind every successful show is a team that believes in the power of collaboration, 
-              creativity, and positive change through fashion.
-            </p>
-          </motion.div>
-          
-          <div className="aspect-[16/9] bg-muted/30 flex items-center justify-center">
-            <div className="text-center">
-              <h3 className="text-2xl font-light tracking-wide mb-4">
-                Committee Group Photo
-              </h3>
-              <p className="text-muted-foreground mb-8">
-                Professional photography session coming soon
-              </p>
-              <Button 
-                variant="outline" 
-                className="px-8 py-3 tracking-wide border-2 hover:bg-foreground hover:text-background transition-all duration-300"
-              >
-                View Past Team Photos
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Join the Team CTA */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl font-light tracking-[-0.01em] mb-6">
-              Join Our Creative Community
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
-              We're always looking for passionate individuals who want to make a difference 
-              through fashion. Whether you're a designer, organizer, or simply someone who 
-              believes in our mission, there's a place for you on our team.
-            </p>
-            <div className="space-y-4">
-              <p className="text-lg font-light tracking-wide">
-                Interested in joining us?
-              </p>
-              <Button 
-                size="lg" 
-                className="px-12 py-6 text-lg tracking-wide bg-foreground text-background hover:bg-foreground/90 transition-all duration-300"
-              >
-                Get Involved
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   )
 }
