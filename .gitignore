@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Large photo assets - don't commit to git
+cucfs\ photos/
+public/gallery/
+public/archive/
+*.jpg
+*.jpeg
+*.png
+*.svg
+*.heic
+*.mp4
