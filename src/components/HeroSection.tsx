@@ -39,7 +39,7 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
         <img
           src={modelImage}
           alt="CUCFS Fashion model"
-          className="w-full h-full object-cover object-center md:object-left opacity-60"
+          className="w-full h-full object-cover object-left opacity-60"
         />
         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/80" />
       </motion.div>
@@ -48,7 +48,7 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
         className="relative z-10 text-left max-w-6xl mx-auto px-6 flex items-center min-h-screen"
         style={{ y: textY }}
       >
-        <div className="max-w-2xl md:max-w-2xl sm:max-w-xl max-w-lg">
+        <div className="max-w-2xl">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -71,7 +71,14 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
             transition={{ duration: 1, delay: 0.8 }}
             className="max-w-lg"
           >
-            <p className="text-lg tracking-wide text-muted-foreground leading-relaxed">
+
+            <p className="text-lg tracking-wide text-muted-foreground leading-none">
+             Cambridge University 
+            </p>
+            <p className="text-lg tracking-wide text-muted-foreground leading-none">
+             Charity Fashion Show
+            </p>
+            <p className="text-lg tracking-wide text-muted-foreground leading-[3rem]">
              #BeyondTheCover
             </p>
           </motion.div>
