@@ -16,24 +16,33 @@ export function Router() {
   const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
+    let ticking = false
+    
     const handleScroll = () => {
-      if (currentPage !== 'home') return
-      
-      const sections = ['home', 'about', 'show', 'charity', 'sponsors', 'contact']
-      
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(sectionId)
-            break
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (currentPage !== 'home') return
+          
+          const sections = ['home', 'about', 'show', 'charity', 'sponsors', 'contact']
+          
+          for (const sectionId of sections) {
+            const element = document.getElementById(sectionId)
+            if (element) {
+              const rect = element.getBoundingClientRect()
+              if (rect.top <= 100 && rect.bottom >= 100) {
+                setActiveSection(sectionId)
+                break
+              }
+            }
           }
-        }
+          
+          ticking = false
+        })
+        ticking = true
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [currentPage])
 

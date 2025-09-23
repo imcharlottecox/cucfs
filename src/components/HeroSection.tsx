@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 // CUCFS model image
 const modelImage = '/hero_model.png'
@@ -10,14 +10,26 @@ interface HeroSectionProps {
 
 export function HeroSection({ onSectionClick }: HeroSectionProps) {
   const containerRef = useRef(null)
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    const checkIsMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      const isSmallScreen = window.innerWidth < 768
+      return isTouchDevice || isSmallScreen
+    }
+    setIsMobile(checkIsMobile())
+  }, [])
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   })
   
-  const modelY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
-  const modelScale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+  // Reduce animation intensity on mobile
+  const modelY = useTransform(scrollYProgress, [0, 1], ["0%", isMobile ? "15%" : "30%"])
+  const modelScale = useTransform(scrollYProgress, [0, 1], [1, isMobile ? 1.05 : 1.1])
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", isMobile ? "25%" : "50%"])
 
   // Suppress unused parameter warning
   console.log('Hero section click handler:', onSectionClick)
@@ -33,7 +45,9 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
         className="absolute right-0 top-0 w-[60%] h-[110vh] z-20 pointer-events-none md:w-[60%] sm:w-[70%] w-[80%]"
         style={{ 
           y: modelY,
-          scale: modelScale
+          scale: modelScale,
+          willChange: 'transform',
+          transform: 'translateZ(0)' // Force hardware acceleration
         }}
       >
         <img
@@ -46,7 +60,11 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
 
       <motion.div 
         className="relative z-10 text-left max-w-6xl mx-auto px-6 flex items-center min-h-screen"
-        style={{ y: textY }}
+        style={{ 
+          y: textY,
+          willChange: 'transform',
+          transform: 'translateZ(0)' // Force hardware acceleration
+        }}
       >
         <div className="max-w-2xl">
           <motion.div

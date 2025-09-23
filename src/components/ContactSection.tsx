@@ -74,16 +74,13 @@ export function ContactSection({ onSectionClick }: ContactSectionProps) {
           </p> */}
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {socialLinks.map((link, index) => (
-            <motion.a
+            <a
               key={index}
               href={link.url}
               target={link.label !== "Email" ? "_blank" : undefined}
               rel={link.label !== "Email" ? "noopener noreferrer" : undefined}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group flex items-center p-4 border border-border/20 hover:border-border/40 transition-all duration-300 w-full"
             >
               <div className="flex items-center justify-center w-10 h-10 bg-muted/30 group-hover:bg-muted/50 transition-colors duration-300 mr-3 flex-shrink-0">
@@ -97,7 +94,7 @@ export function ContactSection({ onSectionClick }: ContactSectionProps) {
                   {link.handle}
                 </p>
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
 

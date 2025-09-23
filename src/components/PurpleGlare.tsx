@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 interface PurpleGlareProps {
   position?: 'top-left' | 'top-right' | 'top-middle-right' | 'bottom-left' | 'bottom-right'
@@ -6,6 +7,19 @@ interface PurpleGlareProps {
 }
 
 export function PurpleGlare({ position = 'top-right', intensity = 0.6 }: PurpleGlareProps) {
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    const checkIsMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      const isSmallScreen = window.innerWidth < 768
+      return isTouchDevice || isSmallScreen
+    }
+    setIsMobile(checkIsMobile())
+  }, [])
+  
+  // Reduce animation intensity on mobile
+  const adjustedIntensity = isMobile ? intensity * 0.5 : intensity
   const positionClasses = {
     'top-left': 'top-0 left-0',
     'top-right': 'top-0 right-0',
@@ -18,8 +32,9 @@ export function PurpleGlare({ position = 'top-right', intensity = 0.6 }: PurpleG
     <motion.div
       className={`absolute ${positionClasses[position]} pointer-events-none z-10`}
       initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: intensity, scale: 1 }}
-      transition={{ duration: 2, ease: "easeOut" }}
+      animate={{ opacity: adjustedIntensity, scale: 1 }}
+      transition={{ duration: isMobile ? 1 : 2, ease: "easeOut" }}
+      style={{ willChange: 'transform, opacity' }}
     >
       {/* Main glare circle */}
       <div 
@@ -37,11 +52,11 @@ export function PurpleGlare({ position = 'top-right', intensity = 0.6 }: PurpleG
           background: 'radial-gradient(circle, rgba(147, 51, 234, 0.6) 0%, rgba(147, 51, 234, 0.3) 40%, transparent 70%)',
           filter: 'blur(20px)'
         }}
-        animate={{ 
+        animate={isMobile ? {} : { 
           scale: [1, 1.2, 1],
           opacity: [0.2, 0.4, 0.2]
         }}
-        transition={{ 
+        transition={isMobile ? {} : { 
           duration: 3,
           repeat: Infinity,
           ease: "easeInOut"
@@ -55,11 +70,11 @@ export function PurpleGlare({ position = 'top-right', intensity = 0.6 }: PurpleG
           background: 'radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, transparent 50%)',
           filter: 'blur(10px)'
         }}
-        animate={{ 
+        animate={isMobile ? {} : { 
           rotate: [0, 180, 360],
           scale: [1, 1.5, 1]
         }}
-        transition={{ 
+        transition={isMobile ? {} : { 
           duration: 4,
           repeat: Infinity,
           ease: "linear"

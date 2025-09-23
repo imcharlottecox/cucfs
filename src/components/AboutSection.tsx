@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { PurpleGlare } from './PurpleGlare'
 
 interface AboutSectionProps {
@@ -9,7 +9,17 @@ interface AboutSectionProps {
 
 export function AboutSection({ onSectionClick }: AboutSectionProps) {
   const ref = useRef(null)
+  const [isMobile, setIsMobile] = useState(false)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  
+  useEffect(() => {
+    const checkIsMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      const isSmallScreen = window.innerWidth < 768
+      return isTouchDevice || isSmallScreen
+    }
+    setIsMobile(checkIsMobile())
+  }, [])
   
   // Suppress unused variable warning
   console.log(onSectionClick)
@@ -19,7 +29,12 @@ export function AboutSection({ onSectionClick }: AboutSectionProps) {
     offset: ["start end", "end start"]
   })
   
-  const textOpacity = useTransform(scrollYProgress, [0, 0.1, 0.12, 0.15, 0.2, 0.21, 0.23, 1], [0.1, 0.1, 0.2, 0.3, 0.5, 0.8, 1,1])
+  // Simplify opacity animation on mobile
+  const textOpacity = useTransform(
+    scrollYProgress, 
+    isMobile ? [0, 0.3, 1] : [0, 0.1, 0.12, 0.15, 0.2, 0.21, 0.23, 1], 
+    isMobile ? [0.3, 0.8, 1] : [0.1, 0.1, 0.2, 0.3, 0.5, 0.8, 1, 1]
+  )
 
   return (
     <section id="about" className="py-32 px-6 relative" ref={ref}>
@@ -28,7 +43,8 @@ export function AboutSection({ onSectionClick }: AboutSectionProps) {
       <motion.div 
         className="max-w-6xl mx-auto"
         style={{ 
-          opacity: textOpacity
+          opacity: textOpacity,
+          willChange: 'opacity'
         }}
       >
         <motion.div
