@@ -4,8 +4,24 @@ import { motion } from 'framer-motion'
 export function MetallicCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    // Detect if device is mobile/touch
+    const checkIsMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      const isSmallScreen = window.innerWidth < 768
+      return isTouchDevice || isSmallScreen
+    }
+
+    const mobile = checkIsMobile()
+    setIsMobile(mobile)
+
+    // If mobile, don't initialize cursor
+    if (mobile) {
+      return
+    }
+
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
@@ -37,6 +53,11 @@ export function MetallicCursor() {
       })
     }
   }, [])
+
+  // Don't render cursor on mobile devices
+  if (isMobile) {
+    return null
+  }
 
   return (
     <>

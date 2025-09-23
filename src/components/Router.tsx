@@ -71,9 +71,9 @@ export function Router() {
   const footerNavItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'charity', label: 'Charity' },
+    { id: 'charity', label: 'Our Purpose' },
     { id: 'show', label: 'Show' },
-    { id: 'partners', label: 'Partners' },
+    { id: 'sponsors', label: 'Partners' },
     { id: 'contact', label: 'Contact' },
     { id: 'committee', label: 'Committee' },
     { id: 'archive', label: 'Archive' }
@@ -97,7 +97,18 @@ export function Router() {
               {footerNavItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => handleNavigation(item.id as Page)}
+                  onClick={() => {
+                    if (item.id === 'committee' || item.id === 'archive') {
+                      // Navigate to separate pages for these
+                      handleNavigation(item.id as Page)
+                    } else {
+                      // Scroll to sections on home page
+                      const element = document.getElementById(item.id)
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' })
+                      }
+                    }
+                  }}
                   className="text-left text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors duration-300 py-2"
                 >
                   {item.label}

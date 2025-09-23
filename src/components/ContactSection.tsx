@@ -74,7 +74,7 @@ export function ContactSection({ onSectionClick }: ContactSectionProps) {
           </p> */}
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {socialLinks.map((link, index) => (
             <motion.a
               key={index}
@@ -84,13 +84,13 @@ export function ContactSection({ onSectionClick }: ContactSectionProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group flex items-center p-3 border border-border/20 hover:border-border/40 transition-all duration-300 min-w-0 flex-shrink-0"
+              className="group flex items-center p-4 border border-border/20 hover:border-border/40 transition-all duration-300 w-full"
             >
-              <div className="flex items-center justify-center w-10 h-10 bg-muted/30 group-hover:bg-muted/50 transition-colors duration-300 mr-3">
+              <div className="flex items-center justify-center w-10 h-10 bg-muted/30 group-hover:bg-muted/50 transition-colors duration-300 mr-3 flex-shrink-0">
                 <link.icon className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300" />
               </div>
-              <div className="min-w-0">
-                <h3 className="text-base font-light tracking-wide mb-0.5 group-hover:text-foreground transition-colors duration-300">
+              <div className="min-w-0 flex-1">
+                <h3 className="text-sm sm:text-base font-light tracking-wide mb-0.5 group-hover:text-foreground transition-colors duration-300 truncate">
                   {link.label}
                 </h3>
                 <p className="text-xs text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300 truncate">

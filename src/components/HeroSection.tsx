@@ -30,7 +30,7 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
     >
       {/* Model overlay - positioned to flow beyond viewport */}
       <motion.div 
-        className="absolute right-0 top-0 w-[60%] h-[110vh] z-20 pointer-events-none"
+        className="absolute right-0 top-0 w-[60%] h-[110vh] z-20 pointer-events-none md:w-[60%] sm:w-[70%] w-[80%]"
         style={{ 
           y: modelY,
           scale: modelScale
@@ -39,7 +39,7 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
         <img
           src={modelImage}
           alt="CUCFS Fashion model"
-          className="w-full h-full object-cover object-left opacity-60"
+          className="w-full h-full object-cover object-center md:object-left opacity-60"
         />
         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/80" />
       </motion.div>
@@ -48,7 +48,7 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
         className="relative z-10 text-left max-w-6xl mx-auto px-6 flex items-center min-h-screen"
         style={{ y: textY }}
       >
-        <div className="max-w-2xl">
+        <div className="max-w-2xl md:max-w-2xl sm:max-w-xl max-w-lg">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
