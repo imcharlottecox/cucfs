@@ -33,3 +33,9 @@ public/archive/
 *.svg
 *.heic
 *.mp4
+
+# Allow specific image folders to be committed
+!public/ine/
+!public/ine/**
+!public/committee/
+!public/committee/**
