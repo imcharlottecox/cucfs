@@ -14,6 +14,7 @@ interface NavigationProps {
 export function Navigation({ currentPage, activeSection, onNavigation }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   // Central navigation tabs (for home page sections)
   const centralNavItems = [
@@ -41,6 +42,13 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   const handleItemClick = (item: typeof allPages[0]) => {
@@ -83,8 +91,8 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
+        initial={isMobile ? undefined : { y: -100 }}
+        animate={isMobile ? undefined : { y: 0 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled 
             ? 'bg-background/80 backdrop-blur-md border-b border-border/20' 
@@ -94,7 +102,7 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
         <div className="flex items-center justify-between px-8 py-6 max-w-full">
           {/* Logo - positioned at very left edge */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
+            whileHover={isMobile ? undefined : { scale: 1.05 }}
             className="cursor-pointer flex-shrink-0"
             onClick={() => onNavigation('home', 'home')}
           >
@@ -113,15 +121,15 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
                       ? 'text-primary'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
-                  whileHover={{ y: -2 }}
+                  whileHover={isMobile ? undefined : { y: -2 }}
                 >
                   {item.label}
                   {getActiveState(item) && (
                     <motion.div
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.3 }}
+                      initial={isMobile ? undefined : { scaleX: 0 }}
+                      animate={isMobile ? undefined : { scaleX: 1 }}
+                      transition={isMobile ? undefined : { duration: 0.3 }}
                     />
                   )}
                 </motion.button>
@@ -133,8 +141,8 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
           <div className="flex items-center space-x-4 flex-shrink-0">
             {/* Home Icon */}
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={isMobile ? undefined : { scale: 1.05 }}
+              whileTap={isMobile ? undefined : { scale: 0.95 }}
               onClick={() => onNavigation('home', 'home')}
               className="p-2 rounded-md text-foreground hover:bg-accent/50 transition-colors duration-300 focus:outline-none"
               title="Go to Home"
@@ -152,8 +160,8 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
               className="p-2 rounded-md text-foreground hover:bg-accent/50 transition-colors duration-300 focus:outline-none"
             >
               <motion.svg
-                animate={{ rotate: isMenuOpen ? 90 : 0 }}
-                transition={{ duration: 0.3 }}
+                animate={isMobile ? undefined : { rotate: isMenuOpen ? 90 : 0 }}
+                transition={isMobile ? undefined : { duration: 0.3 }}
                 className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -170,10 +178,10 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={isMobile ? undefined : { opacity: 0 }}
+            animate={isMobile ? undefined : { opacity: 1 }}
+            exit={isMobile ? undefined : { opacity: 0 }}
+            transition={isMobile ? undefined : { duration: 0.3 }}
             className="fixed inset-0 z-40"
             onClick={() => setIsMenuOpen(false)}
           >
@@ -182,10 +190,10 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
             
             {/* Menu Content - positioned in top right corner */}
             <motion.div
-              initial={{ x: 100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 100, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              initial={isMobile ? undefined : { x: 100, opacity: 0 }}
+              animate={isMobile ? undefined : { x: 0, opacity: 1 }}
+              exit={isMobile ? undefined : { x: 100, opacity: 0 }}
+              transition={isMobile ? undefined : { duration: 0.4, ease: "easeOut" }}
               className="absolute top-0 right-0 h-full w-80 bg-background/90 backdrop-blur-lg overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
@@ -195,27 +203,23 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
                     <motion.button
                       key={item.id}
                       onClick={() => handleItemClick(item)}
-                      initial={{ x: 50, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ 
-                        duration: 0.3, 
-                        delay: index * 0.1,
-                        ease: "easeOut"
-                      }}
+                      initial={isMobile ? undefined : { x: 50, opacity: 0 }}
+                      animate={isMobile ? undefined : { x: 0, opacity: 1 }}
+                      transition={isMobile ? undefined : { duration: 0.3, delay: index * 0.1, ease: "easeOut" }}
                       className={`w-full text-left text-xl tracking-wide transition-colors duration-300 focus:outline-none relative py-3 block ${
                         getActiveState(item)
                           ? 'text-primary font-medium'
                           : 'text-foreground hover:text-primary'
                       }`}
-                      whileHover={{ x: 10 }}
+                      whileHover={isMobile ? undefined : { x: 10 }}
                     >
                       {item.label}
                       {getActiveState(item) && (
                         <motion.div
                           className="absolute -bottom-2 left-0 w-full h-0.5 bg-primary"
-                          initial={{ scaleX: 0 }}
-                          animate={{ scaleX: 1 }}
-                          transition={{ duration: 0.3 }}
+                          initial={isMobile ? undefined : { scaleX: 0 }}
+                          animate={isMobile ? undefined : { scaleX: 1 }}
+                          transition={isMobile ? undefined : { duration: 0.3 }}
                         />
                       )}
                     </motion.button>

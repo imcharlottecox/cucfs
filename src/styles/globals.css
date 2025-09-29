@@ -239,19 +239,12 @@
     padding: 0;
   }
 
-  /* Custom Metallic Cursor */
-  .metallic-cursor {
-    cursor: none !important;
-  }
-
-  /* Hide all default cursors */
-  * {
-    cursor: none !important;
-  }
-
-  /* Ensure no cursor shows on any element */
-  button, a, [role="button"], input, textarea, select, [class*="cursor-pointer"] {
-    cursor: none !important;
+  /* Hide native cursor on desktop only, within metallic-cursor wrapper */
+  @media (hover: hover) and (pointer: fine) {
+    .metallic-cursor,
+    .metallic-cursor * {
+      cursor: none !important;
+    }
   }
 
   .cursor-dot {
