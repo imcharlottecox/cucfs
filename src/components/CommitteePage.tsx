@@ -9,23 +9,29 @@ export function CommitteePage() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   const executives = [
-    { 
-      name: "Alexandra Chen", 
-      role: "President", 
-      image: "https://images.unsplash.com/photo-1629922949137-e236a5ab497d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxtaW5pbWFsaXN0JTIwZmFzaGlvbiUyMHBvcnRyYWl0fGVufDF8fHx8MTc1NzUyNjQ0M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      bio: "A third-year Fashion Business student with a passion for sustainable fashion and social entrepreneurship. Alexandra has led the society to its most successful shows and partnerships."
+    {
+      name: "Paige Griffiths",
+      role: "President",
+      image: "/committee/exec-1.jpg",
+      bio: ""
     },
-    { 
-      name: "Marcus Williams", 
-      role: "Creative Director", 
-      image: "https://images.unsplash.com/photo-1629922949137-e236a5ab497d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxtaW5pbWFsaXN0JTIwZmFzaGlvbiUyMHBvcnRyYWl0fGVufDF8fHx8MTc1NzUyNjQ0M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      bio: "An innovative designer studying Fashion Design with a focus on avant-garde aesthetics. Marcus oversees all creative aspects of our shows and collaborates with emerging designers."
+    {
+      name: "Maddie Wills",
+      role: "Vice-President",
+      image: "/committee/exec-2.jpg",
+      bio: ""
     },
-    { 
-      name: "Sophia Rodriguez", 
-      role: "Production Manager", 
-      image: "https://images.unsplash.com/photo-1629922949137-e236a5ab497d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxtaW5pbWFsaXN0JTIwZmFzaGlvbiUyMHBvcnRyYWl0fGVufDF8fHx8MTc1NzUyNjQ0M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      bio: "A logistics expert pursuing Event Management, Sophia ensures every show runs flawlessly. Her attention to detail and organizational skills are unmatched."
+    {
+      name: "Amali Carter",
+      role: "General Secretary",
+      image: "/committee/exec-3.jpg",
+      bio: ""
+    },
+    {
+      name: "Omar Burhanuddin",
+      role: "Treasurer",
+      image: "/committee/exec-4.jpg",
+      bio: ""
     }
   ]
 
@@ -57,8 +63,6 @@ export function CommitteePage() {
             <div className="w-24 h-px bg-foreground mx-auto mb-8" />
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Meet the passionate individuals who bring our vision to life. 
-              A diverse team 
-              of creatives, strategists, and innovators united by a shared love for fashion and social impact.
             </p>
           </motion.div>
         </div>
@@ -73,10 +77,10 @@ export function CommitteePage() {
             transition={{ duration: 0.8 }}
             className="text-4xl font-light tracking-[-0.01em] text-center mb-16"
           >
-            Executive Team
+            The President's Committee
           </motion.h2>
           
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {executives.map((member, index) => (
               <motion.div
                 key={index}
@@ -112,7 +116,7 @@ export function CommitteePage() {
         </div>
       </section>
 
-      {/* Committee Members */}
+      {/* Committee Members
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.h2
@@ -152,7 +156,7 @@ export function CommitteePage() {
           </div>
         </div>
       </section>
-
+ */}
 
     </div>
   )

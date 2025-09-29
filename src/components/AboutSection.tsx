@@ -59,15 +59,13 @@ export function AboutSection({ onSectionClick }: AboutSectionProps) {
             </h2>
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo elit libero, non scelerisque nibh porttitor at. In eget erat lectus. Aliquam erat volutpat. Etiam eleifend ante finibus, porttitor justo et, laoreet enim. 
+              The Cambridge University Charity Fashion Show first launched in 2014, and since then, has hosted an annual show celebrating up and coming designers and their talent, as well as championing charities who create positive change in the local Cambridge community.             
               </p>
               <p>
-              Suspendisse potenti. Nam eu velit quis tellus accumsan posuere at eu orci. 
-
+              Last year was our most successful year yet, with the show being hosted at the prestigious Cambridge Union. We featured more than 25 incredible designers, and 75 designs. With more than 400 attendees on the day of the show celebrating creativity and social change. 
               </p>
               <p>
-              Ut eu nulla id odio tincidunt rutrum dignissim vel lacus. Aenean feugiat fringilla turpis ac vestibulum. Integer varius dictum imperdiet. Cras mattis metus in efficitur tristique. Praesent eget tristique ante. Etiam finibus et eros in aliquam. Vivamus nec interdum risus.
-
+              Stay tuned for more information about our upcoming 2026 show!
               </p>
             </div>
           </div>
@@ -82,18 +80,14 @@ export function AboutSection({ onSectionClick }: AboutSectionProps) {
               <h3 className="text-2xl tracking-[-0.01em] font-light mb-6">President's Letter</h3>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p className="italic">
-                  "Fashion has always been my language of choice—a way to communicate 
-                  without words, to challenge perceptions, and to celebrate the beautiful 
-                  complexity of human expression."
+                  "Working with such an incredible team on the Cambridge University Charity Fashion Show is the absolute highlight of my time at Cambridge. 
+                  Coordinating such a large event is challenging, but so rewarding, and I am so proud of everyone’s efforts throughout the process 
+                  of organising our 2025 showcase! 
+
                 </p>
-                <p>
-                  This year, we embark on our most ambitious journey yet. Our upcoming show 
-                  promises to be a transformative experience that pushes boundaries while 
-                  honoring the rich legacy of those who came before us.
-                </p>
-                <p>
-                  Join us as we redefine what it means to be fashionable, conscious, and 
-                  uncompromisingly authentic.
+                <p className="italic">
+                  2026 is set to be even bigger and better than ever before, with more designers, more designs, and even more creativity. 
+                  We can’t wait to show you all what we’ve been working on!"
                 </p>
                 <div className="pt-4">
                   <p className="text-sm tracking-wider">— Paige Griffiths, President</p>

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { HeroSection } from './HeroSection'
 import { AboutSection } from './AboutSection'
-import { ShowSection } from './ShowSection'
+import { ShowTeaserSection } from './ShowTeaserSection'
 import { CharitySection } from './CharitySection'
 import { SponsorsSection } from './SponsorsSection'
 import { ContactSection } from './ContactSection'
@@ -49,7 +49,7 @@ export function HomePage({ activeSection, onSectionChange, onNavigation }: HomeP
         <AboutSection onSectionClick={handleSectionClick} />
         <CharitySection onSectionClick={handleSectionClick} onNavigation={onNavigation} />
         <SponsorsSection onSectionClick={handleSectionClick} onNavigation={onNavigation} />
-        <ShowSection onSectionClick={handleSectionClick} />
+        <ShowTeaserSection onSectionClick={handleSectionClick} />
         <ContactSection onSectionClick={handleSectionClick} />
       </motion.div>
 

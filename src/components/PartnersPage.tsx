@@ -153,18 +153,24 @@ export function PartnersPage() {
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                 className="group"
               >
-                <Card className="h-full hover:shadow-lg transition-all duration-300 border-border/20 hover:border-primary/20 bg-gradient-to-br from-card to-muted/5">
-                  <CardHeader className="pb-3">
+                <Card className="h-full relative group border border-border/20 hover:border-primary/20 overflow-hidden hover:shadow-lg transition-all duration-300">
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-400/80 to-pink-500/20 opacity-10 group-hover:opacity-30 blur-[2px] transition-all duration-500" />
+                
+                {/* Card content wrapper */}
+                <div className="relative z-10 p-4">
+                    <CardHeader className="pb-3">
                     <CardTitle className="text-base font-medium tracking-wide mb-2 group-hover:text-primary transition-colors duration-300">
-                      {partner.name}
+                        {partner.name}
                     </CardTitle>
-                  </CardHeader>
-                  
-                  <CardContent className="pt-0">
+                    </CardHeader>
+                    
+                    <CardContent className="pt-0">
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                      {partner.description}
+                        {partner.description}
                     </p>
-                  </CardContent>
+                    </CardContent>
+                </div>
                 </Card>
 
               </motion.div>

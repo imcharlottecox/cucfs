@@ -1,17 +1,22 @@
 export function ArchivePage() {
-  // Original 9 photos from CUCFS 2017 Image Archive
-  const archiveImages = [  
-    { src: "/archive/IMG_2236.JPG" },
-    { src: "/archive/IMG_2307.JPG" },
-    { src: "/archive/IMG_2347.JPG" },
-    { src: "/archive/IMG_2427.JPG" },
-    { src: "/archive/IMG_2433.JPG" },
-    { src: "/archive/Janet Sartor - Signefotar.JPG" },
-    { src: "/archive/Johanne Dindler - Signefotar.JPG" },
-    { src: "/archive/LK Bennett - Signefotar.JPG" },
-    { src: "/archive/LK Bennett and Ted Baker - Signefotar.JPG" },
+  // Load 9 photos from public/ine
+  const archiveImages = [
+    { src: "/ine/DSC10007.jpg" },
+    { src: "/ine/DSC09884.jpg" },
+    { src: "/ine/DSC09752.jpg" },
+    { src: "/ine/DSC02122.jpg" },
+    { src: "/ine/DSC02117.jpg" },
+    { src: "/ine/DSC01752.jpg" },
+    { src: "/ine/Burnt Soul - Signefotar.JPG" },
+    { src: "/ine/Hannah Inskip - Signefotar.JPG" },
+    { src: "/ine/Janet Sartor - Signefotar.JPG" },
+    { src: "/ine/LK Bennett - Signefotar.JPG" },
+    { src: "/ine/LK Bennett and Ted Baker - Signefotar.JPG" },  
+    { src: "/ine/IMG_2236.JPG" },
+    { src: "/ine/IMG_2307.JPG" },
+    { src: "/ine/IMG_2320.JPG" },
+    { src: "/ine/IMG_2433.JPG" },
   ]
-
   return (
     <div className="pt-24">
       {/* Header Section */}
@@ -22,8 +27,7 @@ export function ArchivePage() {
           </h1>
           <div className="w-24 h-px bg-foreground mx-auto mb-8" />
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A journey through our creative evolution—each show a milestone in our mission 
-            to merge fashion with social consciousness and artistic innovation.
+            A journey through our creative evolution.
           </p>
         </div>
       </section>
