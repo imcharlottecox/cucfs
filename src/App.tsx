@@ -1,14 +1,29 @@
 import { Router } from './components/Router'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { MetallicCursor } from './components/MetallicCursor'
+import { MotionConfig } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 export default function App() {
+  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false
+    return window.innerWidth < 768
+  })
+
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize, { passive: true })
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <ThemeProvider>
-      <div className="metallic-cursor overflow-x-hidden">
-        <Router />
-        <MetallicCursor />
-      </div>
+      <MotionConfig reducedMotion={isSmallScreen ? 'always' : 'user'}>
+        <div className="metallic-cursor overflow-x-hidden">
+          <Router />
+          <MetallicCursor />
+        </div>
+      </MotionConfig>
     </ThemeProvider>
   )
 }
