@@ -21,6 +21,10 @@ section, main, .page {
   transform: none !important;
   will-change: auto !important;
 }
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
 
 @keyframes logo-spin {
   from {
