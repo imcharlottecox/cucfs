@@ -68,9 +68,12 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
       >
         <div className="max-w-2xl">
           <motion.div
-            initial={isMobile ? undefined : { opacity: 0, y: 50 }}
-            animate={isMobile ? undefined : { opacity: 1, y: 0 }}
-            transition={isMobile ? undefined : { duration: 1, delay: 0.2 }}
+            // initial={isMobile ? undefined : { opacity: 0, y: 50 }}
+            // animate={isMobile ? undefined : { opacity: 1, y: 0 }}
+            // transition={isMobile ? undefined : { duration: 1, delay: 0.2 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.2 }}
             className="mb-8"
           >
             <h1 className="text-7xl md:text-8xl lg:text-9xl tracking-[-0.03em] font-light mb-4 leading-none">
@@ -84,9 +87,9 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
 
 
           <motion.div
-            initial={isMobile ? undefined : { opacity: 0, y: 30 }}
-            animate={isMobile ? undefined : { opacity: 1, y: 0 }}
-            transition={isMobile ? undefined : { duration: 1, delay: 0.8 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.2 }}
             className="max-w-lg"
           >
 
@@ -102,9 +105,9 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
           </motion.div>
 
           <motion.div
-            initial={isMobile ? undefined : { opacity: 0 }}
-            animate={isMobile ? undefined : { opacity: 1 }}
-            transition={isMobile ? undefined : { duration: 1, delay: 1.2 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.2 }}
             className="mt-12"
           >
             <div className="flex">

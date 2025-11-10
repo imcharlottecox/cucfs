@@ -33,7 +33,7 @@ export function ContactSection({ onSectionClick }: ContactSectionProps) {
       icon: Linkedin, 
       label: "LinkedIn", 
       handle: "CUCFS",
-      url: "https://www.linkedin.com/company/cucfs/?originalSubdomain=uk" 
+      url: "https://www.linkedin.com/company/cambridge-charity-fashion-society/about/" 
     },
     { 
       icon: Facebook, 
