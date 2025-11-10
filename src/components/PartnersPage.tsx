@@ -1,12 +1,8 @@
-import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-// import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Button } from './ui/button'
 
 export function PartnersPage() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
 
   const partners = [
     { name: "Arttoo", description: "Fractional investment platform for iconic art pieces (Sotheby's, Christie's). Supports provenance tracking and community investment." },
@@ -32,16 +28,10 @@ export function PartnersPage() {
   ]
 
   return (
-    <div className="min-h-screen pt-32 pb-20 overflow-y-auto" ref={ref}>
-    <div className="max-w-7xl mx-auto px-6">
-
+    <div className="min-h-screen pt-32 pb-20" ref={ref} style={{ overflowY: 'auto', transform: 'none' }}>
+      <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <motion.div
-          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.4 }}
-          className="text-center mb-20"
-        >
+        <div className="text-center mb-20">
           <h1 className="text-5xl md:text-7xl tracking-[-0.02em] font-light mb-6">
             SPONSORS & PARTNERS
           </h1>
@@ -49,46 +39,26 @@ export function PartnersPage() {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Thank you to our incredible sponsors who make the Cambridge University Charity Fashion Show possible.
           </p>
-        </motion.div>
-
-        {/* Partners Grid */}
-        <div
-  className={isMobile
-    ? "relative overflow-x-auto -mx-6 px-6"      // bleed to edges
-    : "relative overflow-hidden"}                 // marquee mask on desktop
-  style={isMobile ? {
-    WebkitOverflowScrolling: 'touch',
-    overscrollBehaviorX: 'contain',
-    touchAction: 'pan-x',
-  } : undefined}
->
-  <div
-    className={isMobile
-      ? "flex gap-6 whitespace-nowrap snap-x snap-mandatory"
-      : "flex whitespace-nowrap"}
-    style={isMobile
-      ? { transform: 'none' }                     // ⬅️ kill marquee on mobile
-      : { transform: 'translateX(-50%)' }}        // keep marquee on desktop
-  >
-    {partners.map((p, i) => (
-      <div
-        key={i}
-        className="flex-shrink-0 snap-center px-8 py-4 mx-4"
-      >
-        <div className="text-2xl md:text-3xl font-light tracking-wide text-muted-foreground hover:text-foreground transition-colors duration-300">
-          {p.name}
         </div>
-      </div>
-    ))}
-  </div>
-</div>
+
+        {/* Partners Grid - Scrollable on mobile */}
+        <div className="relative overflow-x-auto -mx-6 px-6" style={{ WebkitOverflowScrolling: 'touch', overscrollBehaviorX: 'contain', touchAction: 'pan-x' }}>
+          <div className="flex gap-6 whitespace-nowrap" style={{ transform: 'none' }}>
+            {partners.map((p, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 px-8 py-4"
+              >
+                <div className="text-2xl md:text-3xl font-light tracking-wide text-muted-foreground">
+                  {p.name}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Contact Section */}
-        <motion.div
-          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.8 }}
-          className="mt-20 text-center"
-        >
+        <div className="mt-20 text-center">
           <h3 className="text-3xl font-light mb-6">Interested in Partnering?</h3>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
             Join our community of sponsors and help us make a difference through fashion.
@@ -106,8 +76,7 @@ export function PartnersPage() {
               </a>
             </Button>
           </div>
-        </motion.div>
-
+        </div>
       </div>
     </div>
   )
