@@ -11,7 +11,7 @@ interface SponsorsSectionProps {
   ) => void
 }
 
-export function SponsorsSection({ onSectionClick, onNavigation }: SponsorsSectionProps) {
+export function SponsorsSection({ onNavigation }: SponsorsSectionProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   const [isMobile, setIsMobile] = useState(false)
