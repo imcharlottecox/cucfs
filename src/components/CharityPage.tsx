@@ -67,7 +67,7 @@ export function CharityPage() {
             className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12"
           >
             Cambridge University Charity Fashion Show was proud to support four incredible charities in 2025. 
-            Each organization works tirelessly to create positive change in their communities, and we're honored 
+            Each organisation works tirelessly to create positive change in their communities, and we're honored 
             to contribute to their vital work through our annual fashion show.
           </motion.p>
         </div>
@@ -149,7 +149,7 @@ export function CharityPage() {
             className="text-lg text-muted-foreground mb-8"
           >
             By attending our fashion show or making a donation, you're directly supporting these incredible 
-            organizations and the vital work they do in our communities.
+            organisations and the vital work they do in our communities.
           </motion.p>
         </div>
       </section>

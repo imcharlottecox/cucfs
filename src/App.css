@@ -24,11 +24,24 @@ section, main, .page {
 .overflow-x-auto {
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow-y: hidden; /* Hide accidental vertical track */
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+  height: 0px;
+  background: transparent; /* Safari still allocates space otherwise */
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: transparent;
 }
 nav {
   position: fixed !important;
   z-index: 999 !important;
 }
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

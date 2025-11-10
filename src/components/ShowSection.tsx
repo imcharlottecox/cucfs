@@ -34,15 +34,20 @@ export function ShowSection({ onSectionClick }: ShowSectionProps) {
       >
         {/* Clear title - not blurred */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-5xl md:text-6xl tracking-[-0.02em] font-light mb-8">
-            The Show
-          </h2>
-          <div className="w-24 h-px bg-foreground mx-auto mb-16" />
-        </motion.div>
+  initial={{ opacity: 0, y: 50 }}
+  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+  transition={{ duration: 0.8 }}
+  className="relative z-10"
+
+>
+  <h2 className="text-5xl md:text-6xl tracking-[-0.02em] font-light mb-4">
+    The Show
+  </h2>
+  <h3 className="text-2xl md:text-3xl font-light tracking-wide uppercase mb-8 text-muted-foreground">
+    A Walk of Becoming, Eras Unravelled
+  </h3>
+  <div className="w-24 h-px bg-foreground mx-auto mb-16" />
+</motion.div>
 
         {/* Blurred content - only the details */}
         <div className="blur-[10px] pointer-events-none">

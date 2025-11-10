@@ -25,6 +25,9 @@ export function ShowTeaserSection({ onSectionClick }: ShowTeaserSectionProps) {
         <h2 className="text-4xl md:text-5xl tracking-[-0.02em] font-light mb-6">
           The Show
         </h2>
+        <h3 className="text-xl md:text-3xl font-light tracking-wide uppercase mb-8 text-muted-foreground">
+          A Walk of Becoming, Eras Unravelled
+        </h3>
         <div className="w-16 h-px bg-foreground mx-auto mb-6" />
 
         {/* Entire block intentionally blurred/unreadable as a teaser */}

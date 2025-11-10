@@ -214,8 +214,24 @@ export function PartnersPage() {
             SPONSORS & PARTNERS
           </h1>
           <div className="w-24 h-px bg-foreground mx-auto mb-8" />
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          {/* <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Thank you to our incredible sponsors who make the Cambridge University Charity Fashion Show possible.
+          </p> */}
+          <p className="text-muted-foreground leading-relaxed mb-8 text-base md:text-lg">
+            We simply could not put on CUCFS without the generosity of our sponsors, whose support is vital to bringing the Show to life each year. 
+            As such, we are always looking for new companies to partner with, whether through financial contributions or in-kind support. 
+            In return for sponsors’ contributions, we can offer benefits such as social media exposure, creation of high-quality visual assets, 
+            opportunities for product placement, and more.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-8 text-base md:text-lg">
+            By partnering with CUCFS, your brand will gain access to one of the most desirable student audiences in the UK, while supporting a platform 
+            that champions creativity, sustainability, and charitable impact. We strive to build long-term, mutually beneficial partnerships that 
+            highlight our sponsors both within Cambridge and beyond — connecting your company with the next generation of innovators, consumers, and leaders.
+          </p>
+          <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+            Please email <a href="mailto:cucfs@cambridgesu.co.uk" className="underline hover:text-primary transition-colors">
+              cucfs@cambridgesu.co.uk
+            </a> for more information or to express interest in sponsoring the show.
           </p>
         </motion.div>
 
