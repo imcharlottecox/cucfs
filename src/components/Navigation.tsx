@@ -91,8 +91,9 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
   return (
     <>
       <motion.nav
-        initial={isMobile ? undefined : { y: -100 }}
-        animate={isMobile ? undefined : { y: 0 }}
+    initial={{ y: 0, opacity: 1 }}
+    animate={{ y: 0, opacity: 1 }}
+  
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled 
             ? 'bg-background/80 backdrop-blur-md border-b border-border/20' 

@@ -25,7 +25,10 @@ section, main, .page {
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }
-
+nav {
+  position: fixed !important;
+  z-index: 999 !important;
+}
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
