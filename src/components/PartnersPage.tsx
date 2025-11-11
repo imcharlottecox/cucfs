@@ -81,7 +81,7 @@
 //     </div>
 //   )
 // }
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useRef } from 'react'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
@@ -89,7 +89,7 @@ import { Button } from './ui/button'
 
 export function PartnersPage() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  // const isInView = useInView(ref, { once: true, margin: "-100px" })
   const isMobile = useIsMobile()
 
   const partners = [

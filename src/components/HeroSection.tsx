@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, } from 'react'
 import { useIsMobile } from '../hooks/useIsMobile'
 
 // CUCFS model image
