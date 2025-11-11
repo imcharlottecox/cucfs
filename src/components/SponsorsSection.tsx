@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import { PurpleGlare } from './PurpleGlare'
@@ -6,7 +6,15 @@ import { PurpleGlare } from './PurpleGlare'
 interface SponsorsSectionProps {
   onSectionClick?: (sectionId: string) => void
   onNavigation?: (
-    page: 'home' | 'archive' | 'committee' | 'about' | 'charity' | 'show' | 'partners' | 'contact',
+    page:
+      | 'home'
+      | 'archive'
+      | 'committee'
+      | 'about'
+      | 'charity'
+      | 'show'
+      | 'partners'
+      | 'contact',
     section?: string
   ) => void
 }
@@ -22,12 +30,6 @@ export function SponsorsSection({ onNavigation }: SponsorsSectionProps) {
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start']
-  })
-  const textOpacity = useTransform(scrollYProgress, [0, 0.1, 0.2, 1], [0.2, 0.5, 0.8, 1])
 
   const sponsors = [
     { name: 'Arttoo', tier: 'Main Sponsor' },
@@ -51,6 +53,7 @@ export function SponsorsSection({ onNavigation }: SponsorsSectionProps) {
     { name: 'Coupe Rocks', tier: 'Beverage Partner' },
     { name: 'RCDS Concrete', tier: 'Business Partner' }
   ]
+
   const duplicatedSponsors = [...sponsors, ...sponsors]
 
   return (
@@ -58,14 +61,22 @@ export function SponsorsSection({ onNavigation }: SponsorsSectionProps) {
       <PurpleGlare position="top-left" intensity={0.3} />
       <PurpleGlare position="bottom-right" intensity={0.5} />
 
-      <motion.div className="max-w-4xl mx-auto" style={{ opacity: textOpacity }}>
+      {/* outer wrapper always starts fully opaque */}
+      <motion.div
+        className="max-w-4xl mx-auto"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
+      >
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isMobile ? { opacity: 1, y: 0 } : isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          transition={{ duration: isMobile ? 0 : 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl tracking-[-0.02em] font-light mb-4">Partners</h2>
+          <h2 className="text-4xl md:text-5xl tracking-[-0.02em] font-light mb-4">
+            Partners
+          </h2>
           <div className="w-16 h-px bg-foreground mx-auto mb-4" />
           <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Thank you to our incredible sponsors who make the Cambridge University Charity Fashion Show possible.
@@ -80,11 +91,11 @@ export function SponsorsSection({ onNavigation }: SponsorsSectionProps) {
           </div>
         </motion.div>
 
-        {/* Desktop: Infinite auto-scrolling */}
+        {/* Desktop: Infinite auto-scroll */}
         {!isMobile && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative overflow-hidden"
           >
@@ -108,12 +119,12 @@ export function SponsorsSection({ onNavigation }: SponsorsSectionProps) {
             </div>
 
             {/* Gradient fades */}
-           {/* <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
-            <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-background to-transparent pointer-events-none z-10" /> */}
+            <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
+            <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
           </motion.div>
         )}
 
-        {/* Mobile: Manual scrollable carousel */}
+        {/* Mobile: Static scrollable list */}
         {isMobile && (
           <div className="overflow-x-auto flex gap-6 scrollbar-thin scrollbar-thumb-muted-foreground/40 scrollbar-track-transparent py-4 -mx-6 px-6">
             {sponsors.map((sponsor, index) => (
