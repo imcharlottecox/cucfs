@@ -120,11 +120,11 @@ export function SponsorsSection({ onNavigation }: SponsorsSectionProps) {
 
         {/* Mobile: Static scrollable list */}
         {isMobile && (
-          <div className="overflow-x-auto flex gap-6 scrollbar-thin scrollbar-thumb-muted-foreground/40 scrollbar-track-transparent py-4 -mx-6 px-6">
+          <div className="overflow-x-auto flex gap-8 scrollbar-thin scrollbar-thumb-muted-foreground/40 scrollbar-track-transparent py-4 -mx-6 px-6">
             {sponsors.map((sponsor, index) => (
               <div
                 key={`${sponsor.name}-${index}`}
-                className="flex-shrink-0 text-lg font-light text-muted-foreground hover:text-foreground transition-colors duration-300 min-w-[150px]"
+                className="flex-shrink-0 flex items-center justify-center text-center min-w-[200px] text-base font-light text-muted-foreground hover:text-foreground transition-colors duration-300"
               >
                 {sponsor.name}
               </div>
