@@ -108,8 +108,8 @@ export function SponsorsSection({ onNavigation }: SponsorsSectionProps) {
             </div>
 
             {/* Gradient fades */}
-            <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
-            <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
+           {/* <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
+            <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-background to-transparent pointer-events-none z-10" /> */}
           </motion.div>
         )}
 

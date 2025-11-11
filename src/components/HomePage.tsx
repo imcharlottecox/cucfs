@@ -19,14 +19,14 @@ export function HomePage({ activeSection, onSectionChange, onNavigation }: HomeP
   // Suppress unused variable warnings
   console.log(activeSection, onSectionChange)
 
-  useEffect(() => {
-    // Show loading blur for 1 second
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
+  // useEffect(() => {
+  //   // Show loading blur for 1 second
+  //   const timer = setTimeout(() => {
+  //     setIsLoading(false)
+  //   }, 1000)
 
-    return () => clearTimeout(timer)
-  }, [])
+  //   return () => clearTimeout(timer)
+  // }, [])
 
   const handleSectionClick = (sectionId: string) => {
     onNavigation('home', sectionId)
@@ -34,7 +34,7 @@ export function HomePage({ activeSection, onSectionChange, onNavigation }: HomeP
 
   return (
     <main className="relative">
-      <motion.div
+      {/* <motion.div
         className={`transition-all duration-1000 ${
           isLoading ? 'blur-sm opacity-70' : 'blur-0 opacity-100'
         }`}
@@ -44,17 +44,18 @@ export function HomePage({ activeSection, onSectionChange, onNavigation }: HomeP
           filter: isLoading ? 'blur(8px)' : 'blur(0px)' 
         }}
         transition={{ duration: 1 }}
-      >
+      > */}
+      <div>
         <HeroSection onSectionClick={handleSectionClick} />
         <AboutSection onSectionClick={handleSectionClick} />
         <CharitySection onSectionClick={handleSectionClick} onNavigation={onNavigation} />
         <SponsorsSection onSectionClick={handleSectionClick} onNavigation={onNavigation} />
         <ShowTeaserSection onSectionClick={handleSectionClick} />
         <ContactSection onSectionClick={handleSectionClick} />
-      </motion.div>
-
+      {/* </motion.div> */}
+    </div>
       {/* Loading overlay */}
-      {isLoading && (
+      {/* {isLoading && (
         <motion.div
           className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center"
           initial={{ opacity: 1 }}
@@ -67,7 +68,7 @@ export function HomePage({ activeSection, onSectionChange, onNavigation }: HomeP
             <p className="text-muted-foreground text-sm">Loading...</p>
           </div>
         </motion.div>
-      )}
+      )} */}
     </main>
   )
 }

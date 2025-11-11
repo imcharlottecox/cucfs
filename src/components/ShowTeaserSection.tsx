@@ -25,10 +25,13 @@ export function ShowTeaserSection({ onSectionClick }: ShowTeaserSectionProps) {
         <h2 className="text-4xl md:text-5xl tracking-[-0.02em] font-light mb-6">
           The Show
         </h2>
-        <h3 className="text-xl md:text-3xl font-light tracking-wide uppercase mb-8 text-muted-foreground">
-          A Walk of Becoming, Eras Unravelled
-        </h3>
-        <div className="w-16 h-px bg-foreground mx-auto mb-6" />
+        <h3 className="text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">
+            Theme
+          </h3>
+          <h4 className="text-2xl md:text-3xl font-light tracking-wide mb-8">
+            A Walk of Becoming, Eras Unravelled
+          </h4>
+          <div className="w-24 h-px bg-foreground mx-auto mb-16" />
 
         {/* Entire block intentionally blurred/unreadable as a teaser */}
         <div className="blur-[10px] select-none pointer-events-none">
@@ -49,7 +52,7 @@ export function ShowTeaserSection({ onSectionClick }: ShowTeaserSectionProps) {
           </Button>
         </div> */}
         {/* Instagram Button Overlay */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-5 flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
