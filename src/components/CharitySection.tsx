@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
+import { useIsMobile } from '../hooks/useIsMobile'
 import { PurpleGlare } from './PurpleGlare'
 
 interface CharitySectionProps {
@@ -22,14 +23,7 @@ interface CharitySectionProps {
 export function CharitySection({ onSectionClick, onNavigation }: CharitySectionProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
+  const isMobile = useIsMobile()
 
   // Suppress unused variable warnings
   console.log(onSectionClick, onNavigation)

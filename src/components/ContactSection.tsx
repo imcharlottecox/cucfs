@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef } from 'react'
+import { useIsMobile } from '../hooks/useIsMobile'
 import { PurpleGlare } from './PurpleGlare'
 import { Instagram, Linkedin, Facebook, Mail } from 'lucide-react'
 
@@ -11,14 +12,7 @@ interface ContactSectionProps {
 export function ContactSection({ onSectionClick }: ContactSectionProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
+  const isMobile = useIsMobile()
 
   console.log(onSectionClick)
 

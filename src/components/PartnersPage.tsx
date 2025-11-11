@@ -83,12 +83,14 @@
 // }
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { useIsMobile } from '../hooks/useIsMobile'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Button } from './ui/button'
 
 export function PartnersPage() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isMobile = useIsMobile()
 
   const partners = [
     // Main Sponsor
@@ -205,9 +207,9 @@ export function PartnersPage() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0}}
-          animate={{ opacity: 1}}
-          transition={{ duration: 0.8 }}
+          initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: isMobile ? 0 : 0.8 }}
           className="text-center mb-20"
         >
           <h1 className="text-5xl md:text-7xl tracking-[-0.02em] font-light mb-6">
@@ -237,9 +239,9 @@ export function PartnersPage() {
 
         {/* Partners Grid */}
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.4 }}
           className="mb-20"
         >
           <h2 className="text-3xl font-light text-center mb-12">Our 2025 Sponsors & Partners</h2>
@@ -247,9 +249,9 @@ export function PartnersPage() {
             {partners.map((partner, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0 }}
+                initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                transition={{ duration: isMobile ? 0 : 0.6, delay: isMobile ? 0 : 0.6 + index * 0.1 }}
                 className="group"
               >
                 <Card className="h-full relative group border border-border/20 hover:border-primary/20 overflow-hidden hover:shadow-lg transition-all duration-300">
@@ -279,9 +281,9 @@ export function PartnersPage() {
 
         {/* Contact Section */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.8 }}
           className="mt-20 text-center"
         >
           <h3 className="text-3xl font-light mb-6">Interested in Partnering?</h3>
