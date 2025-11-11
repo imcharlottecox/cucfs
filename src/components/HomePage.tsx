@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+// import { useState, useEffect } from 'react'
+// import { motion } from 'framer-motion'
 import { HeroSection } from './HeroSection'
 import { AboutSection } from './AboutSection'
 import { ShowTeaserSection } from './ShowTeaserSection'
@@ -14,7 +14,7 @@ interface HomePageProps {
 }
 
 export function HomePage({ activeSection, onSectionChange, onNavigation }: HomePageProps) {
-  const [isLoading, setIsLoading] = useState(true)
+  // const [isLoading, setIsLoading] = useState(true)
 
   // Suppress unused variable warnings
   console.log(activeSection, onSectionChange)

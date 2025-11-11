@@ -1,6 +1,6 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { PurpleGlare } from './PurpleGlare'
 import { Instagram, Linkedin, Facebook, Mail } from 'lucide-react'
 
@@ -10,42 +10,42 @@ interface ContactSectionProps {
 
 export function ContactSection({ onSectionClick }: ContactSectionProps) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  
-  // Suppress unused variable warning
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   console.log(onSectionClick)
-  
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  })
-  
-  const textOpacity = useTransform(scrollYProgress, [0, 0.1, 0.12, 0.15, 0.2, 0.21, 0.23, 1], [0.1, 0.1, 0.2, 0.3, 0.5, 0.8, 1,1])
 
   const socialLinks = [
-    { 
-      icon: Instagram, 
-      label: "Instagram", 
-      handle: "@CUCFS",
-      url: "https://instagram.com/CUCFS" 
+    {
+      icon: Instagram,
+      label: 'Instagram',
+      handle: '@CUCFS',
+      url: 'https://instagram.com/CUCFS'
     },
-    { 
-      icon: Linkedin, 
-      label: "LinkedIn", 
-      handle: "CUCFS",
-      url: "https://www.linkedin.com/company/cambridge-charity-fashion-society/about/" 
+    {
+      icon: Linkedin,
+      label: 'LinkedIn',
+      handle: 'CUCFS',
+      url: 'https://www.linkedin.com/company/cambridge-charity-fashion-society/about/'
     },
-    { 
-      icon: Facebook, 
-      label: "Facebook", 
-      handle: "CUCFS Official",
-      url: "https://facebook.com/CUCFS" 
+    {
+      icon: Facebook,
+      label: 'Facebook',
+      handle: 'CUCFS Official',
+      url: 'https://facebook.com/CUCFS'
     },
-    { 
-      icon: Mail, 
-      label: "Email", 
-      handle: "cucfs@cambridgesu.co.uk",
-      url: "mailto:cucfs@cambridgesu.co.uk" 
+    {
+      icon: Mail,
+      label: 'Email',
+      handle: 'cucfs@cambridgesu.co.uk',
+      url: 'mailto:cucfs@cambridgesu.co.uk'
     }
   ]
 
@@ -53,34 +53,38 @@ export function ContactSection({ onSectionClick }: ContactSectionProps) {
     <section id="contact" className="py-16 px-6 relative" ref={ref}>
       <PurpleGlare position="top-middle-right" intensity={0.4} />
       <PurpleGlare position="bottom-left" intensity={0.3} />
-      <motion.div 
+
+      {/* Wrapper always visible on load */}
+      <motion.div
         className="max-w-4xl mx-auto"
-        style={{ 
-          opacity: textOpacity
-        }}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
       >
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          animate={
+            isMobile || isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }
+          }
+          transition={{ duration: isMobile ? 0 : 0.8 }}
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl tracking-[-0.02em] font-light mb-4">
             Connect
           </h2>
           <div className="w-16 h-px bg-foreground mx-auto mb-4" />
-          {/* <p className="text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Join our community of creatives, collaborators, and changemakers.
-          </p> */}
         </motion.div>
 
+        {/* Social links grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {socialLinks.map((link, index) => (
             <a
               key={index}
               href={link.url}
-              target={link.label !== "Email" ? "_blank" : undefined}
-              rel={link.label !== "Email" ? "noopener noreferrer" : undefined}
+              target={link.label !== 'Email' ? '_blank' : undefined}
+              rel={
+                link.label !== 'Email' ? 'noopener noreferrer' : undefined
+              }
               className="group flex items-center p-4 border border-border/20 hover:border-border/40 transition-all duration-300 w-full"
             >
               <div className="flex items-center justify-center w-10 h-10 bg-muted/30 group-hover:bg-muted/50 transition-colors duration-300 mr-3 flex-shrink-0">
@@ -98,20 +102,20 @@ export function ContactSection({ onSectionClick }: ContactSectionProps) {
           ))}
         </div>
 
+        {/* Footer text */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={
+            isMobile || isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }
+          }
+          transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.4 }}
           className="text-center mt-20"
         >
           <p className="text-muted-foreground leading-relaxed mb-8">
-            For press inquiries, partnership proposals, or general questions, 
-            we'd love to hear from you.
+            For press inquiries, partnership proposals, or general questions, we'd love to hear from you.
           </p>
           <div className="space-y-2">
-            <p className="text-sm tracking-widest text-muted-foreground">
-              CUCFS
-            </p>
+            <p className="text-sm tracking-widest text-muted-foreground">CUCFS</p>
             <p className="text-xs tracking-wider text-muted-foreground">
               Showcasing creative talent, in aid of charity.
             </p>
