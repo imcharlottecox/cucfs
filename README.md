@@ -20,7 +20,7 @@ The project is built using **React**, **TypeScript**, and **Vite**, with **Tailw
 
 ```bash
 git clone <repository-url>
-
+```
 
 ---
 
@@ -128,7 +128,7 @@ To add a new page:
 
 2. Add a page component:
 
-```tsx
+```jsx
 export default function SponsorsPage() {
     return (
         <main>
