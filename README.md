@@ -1,111 +1,134 @@
-The project is built using React, TypeScript, and Vite, with TailwindCSS for styling.
+# CUCFS Website – React + TypeScript + Vite
 
-1. Repository Setup
-3.1 Clone the repository
+The project is built using **React**, **TypeScript**, and **Vite**, with **TailwindCSS** for styling.
 
-Using GitHub Desktop:
+---
 
-Open GitHub Desktop.
+## 1. Repository Setup
 
-Select "Clone a repository".
+### 1.1 Clone the repository
 
-Enter the repository URL.
+**Using GitHub Desktop:**
 
-Choose a local directory.
+1. Open GitHub Desktop  
+2. Select **“Clone a repository”**  
+3. Enter the repository URL  
+4. Choose a local directory  
+5. Select **Clone**
 
-Select "Clone".
+**Using the command line:**
 
-Using the command line:
-
+```bash
 git clone <repository-url>
-cd cua-cfs-website
 
-2. Install Dependencies
+
+---
+
+## 2. Install Dependencies
 
 Navigate to the project folder and install all required packages:
 
+```bash
 npm install
+```
 
+This generates the `node_modules` directory and installs the framework, dependencies, and build tools.
 
-This generates the node_modules directory and installs the framework, dependencies, and build tools.
+---
 
-3. Local Development Environment
+## 3. Local Development Environment
 
 To start the development server:
 
+```bash
 npm run dev
+```
 
 The terminal will display a local URL, typically:
 
+```
 http://localhost:5173
-
+```
 
 Open this URL in a browser to view the live development version of the site.
 
 The development server supports hot reloading: changes to files are reflected in real time without restarting the server.
 
-4. Project Structure
+---
+
+## 4. Project Structure
 
 Key directories and their purpose:
 
-cucfs/src
-    /assets          Contains images, logos, and static assets.
-    /components      Contains reusable UI components and pages.
-    /styles          Contains Tailwind and global styles.
-    main.tsx         Application entry point.
-    App.tsx          Root application layout.
+```
+cucfs/
+└── src/
+    ├── assets/         # Contains images, logos, and static assets
+    ├── components/     # Contains reusable UI components and pages
+    ├── styles/         # Tailwind and global styles
+    ├── main.tsx        # Application entry point
+    └── App.tsx         # Root application layout
 
-public/              Static files copied directly to build output.
-index.html           Document template for Vite.
+public/                 # Static files copied directly to build output
+└── index.html          # Document template for Vite
 
-package.json         Project metadata, scripts, and dependencies.
-vite.config.ts       Vite configuration.
-tsconfig.json        TypeScript configuration.
+package.json            # Project metadata, scripts, dependencies
+vite.config.ts          # Vite configuration
+tsconfig.json           # TypeScript configuration
+```
 
+Most text and content updates are made in files under `/src/routes` and `/src/components`.
 
-Most text and content updates are made in files under /src/routes and /src/components.
+---
 
-5. Editing Content
-5.1 Editing page text
+## 5. Editing Content
 
-Locate the relevant page under /src/components.
-Example:
+### 5.1 Editing page text
 
-Home page: src/routes/Home.tsx
+Locate the relevant page under `/src/components`.
 
-Charities page: src/routes/Charities.tsx
+Examples:
+
+- **Home page**: `src/routes/Home.tsx`
+- **Charities page**: `src/routes/Charities.tsx`
 
 Open the file in a text editor.
 
 Edit text inside JSX elements. Example:
 
+```jsx
 <p>Updated content goes here.</p>
+```
 
+Save the file. The development server will reload automatically.
 
-Save the file.
-The development server will reload automatically.
+### 5.2 Editing images
 
-5.2 Editing images
+Place image files in either `/public` or `/assets`.
 
-Place image files in either /public or /assets.
-
-5.3 Editing styles
+### 5.3 Editing styles
 
 Tailwind utility classes are applied directly in JSX.
-Global styles are defined in /src/styles and can be modified if required.
 
-6. Creating New Pages
-Components contains both Pages and Sections, which make up the homepage.
+Global styles are defined in `/src/styles` and can be modified if required.
+
+---
+
+## 6. Creating New Pages
+
+`components/` contains both **Pages** and **Sections**, which make up the homepage.
 
 To add a new page:
 
-Create a new file under /src/components, for example:
+1. Create a new file under `/src/components`, for example:
 
+```bash
 /src/components/Sponsors.tsx
+```
 
+2. Add a page component:
 
-Add a page component:
-
+```tsx
 export default function SponsorsPage() {
     return (
         <main>
@@ -114,31 +137,32 @@ export default function SponsorsPage() {
         </main>
     );
 }
+```
 
+3. Ensure the new page is linked from the navigation component if needed.
 
-Ensure the new page is linked from the navigation component if needed.
+---
 
-7. Production Deployment
+## 7. Production Deployment
 
-Deployments are handled through Cloudflare pages, under the CUCFS email.
+Deployments are handled through **Cloudflare Pages**, under the **CUCFS** email.
 
 The typical workflow:
 
-Commit changes:
+**Commit changes:**
 
+```bash
 git add .
 git commit -m "Description of update"
+```
 
+**Push changes:**
 
-Push changes:
-
+```bash
 git push origin main
-
+```
 
 The hosting provider will automatically detect the push and start a new build and deployment.
-
-
-
 
 # React + TypeScript + Vite
 
