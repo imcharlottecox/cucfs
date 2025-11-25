@@ -91,7 +91,7 @@ Place image files in either /public or /assets.
 
 Update references in components:
 
-<img src="/my-image.png" />
+<img src=" ... " />
 
 5.3 Editing styles
 
