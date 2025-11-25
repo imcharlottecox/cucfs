@@ -89,10 +89,6 @@ The development server will reload automatically.
 
 Place image files in either /public or /assets.
 
-Update references in components:
-
-<img src=" ... " />
-
 5.3 Editing styles
 
 Tailwind utility classes are applied directly in JSX.
