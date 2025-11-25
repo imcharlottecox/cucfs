@@ -72,7 +72,7 @@ export function HeroSection({ onSectionClick }: HeroSectionProps) {
              Charity Fashion Show
             </p>
             <p className="text-lg tracking-wide text-muted-foreground leading-[3rem]">
-             #BeyondTheCover
+             #AWalkOfBecoming
             </p>
           </motion.div>
 

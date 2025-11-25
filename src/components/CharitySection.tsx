@@ -58,7 +58,7 @@ export function CharitySection({ onSectionClick, onNavigation }: CharitySectionP
                 Each year, we carefully select new beneficiaries that reflect our evolving mission.
               </p>
               <p className="font-medium">
-                Next year's partnerships will be announced in due course.
+                We are happy to announce our support of Refuge this year.
               </p>
             </div>
             <button

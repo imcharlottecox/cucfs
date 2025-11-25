@@ -44,7 +44,7 @@ export function CharityPage() {
   return (
     <main className="pt-24 min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="py-20 px-6">
+      <section className="pt-20 pb-10 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -66,15 +66,44 @@ export function CharityPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12"
           >
-            Cambridge University Charity Fashion Show was proud to support four incredible charities in 2025. 
-            Each organisation works tirelessly to create positive change in their communities, and we're honored 
-            to contribute to their vital work through our annual fashion show.
+            Cambridge University Charity Fashion Show was proud to support four incredible charities in 2025, raising £4700. 
+            This year, we are delighted to be supporting Refuge.
           </motion.p>
+          <div className="flex items-center justify-center gap-6 mt-6">
+            <a
+              href="https://refuge.org.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors duration-200 text-sm font-medium"
+            >
+              <Globe className="w-4 h-4" />
+              Visit Refuge
+            </a>
+
+            <a
+              href="http://www.justgiving.com/team/cucfsmodels2526"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors duration-200 text-sm font-medium"
+            >
+              <Globe className="w-4 h-4" />
+              Donate to our Just Giving
+            </a>
+          </div>
+
         </div>
       </section>
 
       {/* Charities Grid */}
-      <section className="py-16 px-6">
+        <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl tracking-[-0.02em] font-light mb-6 text-center"
+          >
+            2025's CHARITIES
+          </motion.h2>
+      <section className="pt-10 pb-10 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
             {charities.map((charity, index) => (

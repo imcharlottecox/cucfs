@@ -64,7 +64,7 @@ export function CommitteePage() {
       image: "/Executive_Team/Iga Szejmo, Welfare Officer.jpg"
     },
     {
-      name: "John Change",
+      name: "John Chang",
       role: "Head of Entertainment",
       image: "/Executive_Team/John Change, Head of Entertainment.jpg"
     },

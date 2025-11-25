@@ -60,7 +60,7 @@ export function ShowSection({ onSectionClick }: ShowSectionProps) {
           <div className="grid md:grid-cols-3 gap-12 text-center">
             <div>
               <h3 className="text-2xl tracking-[-0.01em] font-light mb-4">Theme</h3>
-              <p className="text-4xl font-light tracking-wider">Beyond The Cover</p>
+              <p className="text-4xl font-light tracking-wider">A Walk Of Becoming</p>
               <p className="text-muted-foreground mt-4 leading-relaxed">
                 An exploration of transformation, growth, and the beautiful evolution 
                 of identity through fashion.
