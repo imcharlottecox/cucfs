@@ -89,7 +89,7 @@ export function SponsorsSection({ onNavigation }: SponsorsSectionProps) {
             <div className="flex-shrink-0 flex justify-center md:justify-end">
               {/* Dark mode: white logo, Light mode: black logo */}
               <img
-                src="/public/ine/fetchai_logo_white.svg"
+                src="/ine/fetchai_logo_white.svg"
                 alt="Fetch.ai"
                 className="h-12 w-auto hidden dark:block"
               />
