@@ -23,7 +23,8 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
     { id: 'charity', label: 'Our Purpose', type: 'section' as const },
     { id: 'sponsors', label: 'Partners', type: 'section' as const },
     { id: 'show', label: 'Show', type: 'section' as const },
-    { id: 'contact', label: 'Contact', type: 'section' as const }
+    { id: 'contact', label: 'Contact', type: 'section' as const },
+    { id: 'book', label: 'Book', type: 'external' as const, url: 'https://fetch.ai/cucfs' }
   ]
 
   // All pages (for menu)
@@ -69,7 +70,12 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
   }
 
   const handleCentralNavClick = (item: typeof centralNavItems[0]) => {
-    // All central nav items are sections - scroll to section on home page
+    // Handle external links
+    if (item.type === 'external' && 'url' in item) {
+      window.open(item.url, '_blank', 'noopener,noreferrer')
+      return
+    }
+    // All other central nav items are sections - scroll to section on home page
     scrollToSection(item.id)
   }
 
@@ -114,28 +120,48 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
           {/* Central Navigation Tabs - only show on home page, perfectly centered */}
           {currentPage === 'home' && (
             <div className="hidden md:flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 space-x-8">
-              {centralNavItems.map((item) => (
-                <motion.button
-                  key={item.id}
-                  onClick={() => handleCentralNavClick(item)}
-                  className={`text-sm font-medium transition-colors duration-300 focus:outline-none relative whitespace-nowrap ${
-                    getActiveState(item)
-                      ? 'text-primary'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                  whileHover={isMobile ? undefined : { y: -2 }}
-                >
-                  {item.label}
-                  {getActiveState(item) && (
-                    <motion.div
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-                      initial={isMobile ? undefined : { scaleX: 0 }}
-                      animate={isMobile ? undefined : { scaleX: 1 }}
-                      transition={isMobile ? undefined : { duration: 0.3 }}
-                    />
-                  )}
-                </motion.button>
-              ))}
+              {centralNavItems.map((item) => {
+                const isExternal = item.type === 'external' && 'url' in item
+                const isActive = !isExternal && getActiveState(item)
+                
+                if (isExternal) {
+                  return (
+                    <motion.a
+                      key={item.id}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium transition-colors duration-300 focus:outline-none relative whitespace-nowrap text-muted-foreground hover:text-foreground"
+                      whileHover={isMobile ? undefined : { y: -2 }}
+                    >
+                      {item.label}
+                    </motion.a>
+                  )
+                }
+                
+                return (
+                  <motion.button
+                    key={item.id}
+                    onClick={() => handleCentralNavClick(item)}
+                    className={`text-sm font-medium transition-colors duration-300 focus:outline-none relative whitespace-nowrap ${
+                      isActive
+                        ? 'text-primary'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                    whileHover={isMobile ? undefined : { y: -2 }}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <motion.div
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                        initial={isMobile ? undefined : { scaleX: 0 }}
+                        animate={isMobile ? undefined : { scaleX: 1 }}
+                        transition={isMobile ? undefined : { duration: 0.3 }}
+                      />
+                    )}
+                  </motion.button>
+                )
+              })}
             </div>
           )}
 
