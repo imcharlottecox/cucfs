@@ -66,22 +66,39 @@ export function SponsorsSection({ onNavigation }: SponsorsSectionProps) {
           initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           animate={isMobile ? { opacity: 1, y: 0 } : isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
           transition={{ duration: isMobile ? 0 : 0.6 }}
-          className="text-center mb-12"
+          className="mb-12"
         >
-          <h2 className="text-4xl md:text-5xl tracking-[-0.02em] font-light mb-4">
-            Partners
-          </h2>
-          <div className="w-16 h-px bg-foreground mx-auto mb-4" />
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Thank you to our incredible sponsors who make the Cambridge University Charity Fashion Show possible.
-          </p>
-          <div className="mt-4">
-            <button
-              onClick={() => onNavigation?.('partners')}
-              className="text-sm text-foreground underline hover:text-muted-foreground transition-colors duration-300 cursor-pointer focus:outline-none"
-            >
-              Learn More About Partnering with CUCFS
-            </button>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="text-center md:text-left flex-1">
+              <h2 className="text-4xl md:text-5xl tracking-[-0.02em] font-light mb-4">
+                Partners
+              </h2>
+              <div className="w-16 h-px bg-foreground mx-auto md:mx-0 mb-4" />
+              <p className="text-base text-muted-foreground max-w-2xl md:max-w-xl mx-auto md:mx-0 leading-relaxed">
+                Thank you to our incredible sponsors who make the Cambridge University Charity Fashion Show possible, and especially to our primary sponsor Fetch.ai.
+              </p>
+              <div className="mt-4">
+                <button
+                  onClick={() => onNavigation?.('partners')}
+                  className="text-sm text-foreground underline hover:text-muted-foreground transition-colors duration-300 cursor-pointer focus:outline-none"
+                >
+                  Learn More About Partnering with CUCFS
+                </button>
+              </div>
+            </div>
+            <div className="flex-shrink-0 flex justify-center md:justify-end">
+              {/* Dark mode: white logo, Light mode: black logo */}
+              <img
+                src="/public/ine/fetchai_logo_white.svg"
+                alt="Fetch.ai"
+                className="h-12 w-auto hidden dark:block"
+              />
+              <img
+                src="/ine/fetchai_logo_black.svg"
+                alt="Fetch.ai"
+                className="h-12 w-auto block dark:hidden"
+              />
+            </div>
           </div>
         </motion.div>
 

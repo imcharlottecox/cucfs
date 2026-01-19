@@ -210,31 +210,45 @@ export function PartnersPage() {
           initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: isMobile ? 0 : 0.8 }}
-          className="text-center mb-20"
+          className="mb-20"
         >
-          <h1 className="text-5xl md:text-7xl tracking-[-0.02em] font-light mb-6">
-            SPONSORS & PARTNERS
-          </h1>
-          <div className="w-24 h-px bg-foreground mx-auto mb-8" />
-          {/* <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Thank you to our incredible sponsors who make the Cambridge University Charity Fashion Show possible.
-          </p> */}
-          <p className="text-muted-foreground leading-relaxed mb-8 text-base md:text-lg">
-            We simply could not put on CUCFS without the generosity of our sponsors, whose support is vital to bringing the Show to life each year. 
-            As such, we are always looking for new companies to partner with, whether through financial contributions or in-kind support. 
-            In return for sponsors’ contributions, we can offer benefits such as social media exposure, creation of high-quality visual assets, 
-            opportunities for product placement, and more.
-          </p>
-          <p className="text-muted-foreground leading-relaxed mb-8 text-base md:text-lg">
-            By partnering with CUCFS, your brand will gain access to one of the most desirable student audiences in the UK, while supporting a platform 
-            that champions creativity, sustainability, and charitable impact. We strive to build long-term, mutually beneficial partnerships that 
-            highlight our sponsors both within Cambridge and beyond — connecting your company with the next generation of innovators, consumers, and leaders.
-          </p>
-          <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-            Please email <a href="mailto:cucfs@cambridgesu.co.uk" className="underline hover:text-primary transition-colors">
-              cucfs@cambridgesu.co.uk
-            </a> for more information or to express interest in sponsoring the show.
-          </p>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="text-center md:text-left flex-1">
+              <h1 className="text-5xl md:text-7xl tracking-[-0.02em] font-light mb-6">
+                SPONSORS & PARTNERS
+              </h1>
+              <div className="w-24 h-px bg-foreground mx-auto md:mx-0 mb-8" />
+              <p className="text-muted-foreground leading-relaxed mb-8 text-base md:text-lg">
+                We simply could not put on CUCFS without the generosity of our sponsors, whose support is vital to bringing the Show to life each year. 
+                As such, we are always looking for new companies to partner with, whether through financial contributions or in-kind support. 
+                In return for sponsors’ contributions, we can offer benefits such as social media exposure, creation of high-quality visual assets, 
+                opportunities for product placement, and more.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-8 text-base md:text-lg">
+                By partnering with CUCFS, your brand will gain access to one of the most desirable student audiences in the UK, while supporting a platform 
+                that champions creativity, sustainability, and charitable impact. We strive to build long-term, mutually beneficial partnerships that 
+                highlight our sponsors both within Cambridge and beyond — connecting your company with the next generation of innovators, consumers, and leaders.
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+                Please email <a href="mailto:cucfs@cambridgesu.co.uk" className="underline hover:text-primary transition-colors">
+                  cucfs@cambridgesu.co.uk
+                </a> for more information or to express interest in sponsoring the show.
+              </p>
+            </div>
+            <div className="flex-shrink-0 flex justify-center md:justify-end">
+              {/* Dark mode: white logo, Light mode: black logo */}
+              <img
+                src="/ine/fetchai_logo_white.svg"
+                alt="Fetch.ai Logo"
+                className="h-12 w-auto hidden dark:block"
+              />
+              <img
+                src="/ine/fetchai_logo_black.svg"
+                alt="Fetch.ai Logo"
+                className="h-12 w-auto block dark:hidden"
+              />
+            </div>
+          </div>
         </motion.div>
 
         {/* Partners Grid */}

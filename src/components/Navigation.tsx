@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ThemeToggle } from './ThemeToggle'
 import { Logo } from './Logo'
 
-type Page = 'home' | 'archive' | 'committee' | 'about' | 'charity' | 'show' | 'partners' | 'contact'
+type Page = 'home' | 'archive' | 'committee' | 'about' | 'charity' | 'show' | 'partners' | 'zine' | 'contact'
 
 interface NavigationProps {
   currentPage: Page
@@ -31,6 +31,7 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
     { id: 'home', label: 'Home', type: 'section' as const },
     { id: 'charity', label: 'Our Charities', type: 'page' as const },
     { id: 'partners', label: 'Sponsors & Partners', type: 'page' as const },
+    { id: 'zine', label: 'Zine', type: 'page' as const },
     { id: 'committee', label: 'Committee', type: 'page' as const },
     { id: 'archive', label: 'Archive', type: 'page' as const },
     { id: 'contact', label: 'Contact', type: 'page' as const },

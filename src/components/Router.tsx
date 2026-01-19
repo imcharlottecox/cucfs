@@ -7,9 +7,10 @@ import { AboutPage } from './AboutPage'
 import { CharityPage } from './CharityPage'
 import { ShowPage } from './ShowPage'
 import { PartnersPage } from './PartnersPage'
+import { ZinePage } from './ZinePage'
 import { ContactPage } from './ContactPage'
 
-export type Page = 'home' | 'archive' | 'committee' | 'about' | 'charity' | 'show' | 'partners' | 'contact'
+export type Page = 'home' | 'archive' | 'committee' | 'about' | 'charity' | 'show' | 'partners' | 'zine' | 'contact'
 
 export function Router() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
@@ -72,6 +73,8 @@ export function Router() {
         return <ShowPage />
       case 'partners':
         return <PartnersPage />
+      case 'zine':
+        return <ZinePage />
       case 'contact':
         return <ContactPage />
     }

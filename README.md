@@ -81,6 +81,24 @@ Most text and content updates are made in files under `/src/routes` and `/src/co
 
 ---
 
+## Zine Password Configuration
+
+Full designer interviews in the **Zine** section are protected behind a simple password gate.
+
+Set the password via a Vite environment variable:
+
+```bash
+# .env (not committed to git)
+VITE_ZINE_PASSWORD=your-password-here
+```
+
+Notes:
+
+- The app reads this via `import.meta.env.VITE_ZINE_PASSWORD` on the client.
+
+
+---
+
 ## 5. Editing Content
 
 ### 5.1 Editing page text
