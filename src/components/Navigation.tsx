@@ -36,6 +36,7 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
     { id: 'archive', label: 'Archive', type: 'page' as const },
     { id: 'zine', label: 'Zine', type: 'page' as const },
     { id: 'contact', label: 'Contact', type: 'page' as const },
+    { id: 'book', label: 'Book', type: 'external' as const, url: 'https://fetch.ai/cucfs' }
   ]
 
   useEffect(() => {
@@ -54,6 +55,13 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
   }, [])
 
   const handleItemClick = (item: typeof allPages[0]) => {
+    // Handle external links
+    if (item.type === 'external' && 'url' in item) {
+      window.open(item.url, '_blank', 'noopener,noreferrer')
+      setIsMenuOpen(false)
+      return
+    }
+    
     if (item.type === 'page') {
       // Navigate to dedicated page
       onNavigation(item.id as Page)
@@ -88,6 +96,9 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
   }
 
   const getActiveState = (item: typeof allPages[0]) => {
+    if (item.type === 'external') {
+      return false // External links are never "active"
+    }
     if (item.type === 'page') {
       return currentPage === item.id
     } else {
@@ -140,26 +151,26 @@ export function Navigation({ currentPage, activeSection, onNavigation }: Navigat
                 }
                 
                 return (
-                  <motion.button
-                    key={item.id}
-                    onClick={() => handleCentralNavClick(item)}
-                    className={`text-sm font-medium transition-colors duration-300 focus:outline-none relative whitespace-nowrap ${
+                <motion.button
+                  key={item.id}
+                  onClick={() => handleCentralNavClick(item)}
+                  className={`text-sm font-medium transition-colors duration-300 focus:outline-none relative whitespace-nowrap ${
                       isActive
-                        ? 'text-primary'
-                        : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                    whileHover={isMobile ? undefined : { y: -2 }}
-                  >
-                    {item.label}
+                      ? 'text-primary'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                  whileHover={isMobile ? undefined : { y: -2 }}
+                >
+                  {item.label}
                     {isActive && (
-                      <motion.div
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-                        initial={isMobile ? undefined : { scaleX: 0 }}
-                        animate={isMobile ? undefined : { scaleX: 1 }}
-                        transition={isMobile ? undefined : { duration: 0.3 }}
-                      />
-                    )}
-                  </motion.button>
+                    <motion.div
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                      initial={isMobile ? undefined : { scaleX: 0 }}
+                      animate={isMobile ? undefined : { scaleX: 1 }}
+                      transition={isMobile ? undefined : { duration: 0.3 }}
+                    />
+                  )}
+                </motion.button>
                 )
               })}
             </div>
